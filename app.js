@@ -51,7 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ]
 
+  cardArray.sort(() => 0.5 - Math.random());
+
   const grid = document.querySelector('.grid');
+  const resultDisplay = document.querySelector('#result');
   const cardsChosen = [];
   const cardsChosenId = [];
   const cardsWon = [];
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('img');
       card.setAttribute('src', 'images/blank.png');
       card.setAttribute('data-id', i);
-      // card.addEventListener('click', flipcard);
+      card.addEventListener('click', flipcard);
       grid.appendChild(card);
     }
   }
@@ -85,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cardsChosen.length = 0;
     cardsChosenId.length = 0;
+    resultDisplay.textContent = cardsWon.length;
+
+    if ( cardsWon.length === (cardArray.length / 2) ) {
+      resultDisplay.textContent = 'Congratulations! You found them all!';
+    }
   }
 
   // flip the card
